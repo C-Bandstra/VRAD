@@ -1,0 +1,10 @@
+.area-card {
+  width: 50%;
+  margin: 8%;
+  background-color: grey;
+  padding: 5%;
+}
+
+.area-header {
+  text-align: center;
+}
