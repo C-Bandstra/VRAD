@@ -2,7 +2,7 @@ import  React, {Component} from 'react';
 import './App.css';
 import Login from '../Login/Login'
 import AreaContainer from '../AreaContainer/AreaContainer'
-import {Route} from "react-router-dom";
+import {Route, Redirect} from "react-router-dom";
 
 
 // import { render } from '@testing-library/react';
@@ -12,7 +12,13 @@ class App extends Component {
     super();
     this.state = {
       current: 'login',
-      areas: []
+      areas: [],
+      userInfo: {
+        name: '',
+        email: '',
+        purpose: ''
+      },
+      isLoggedIn: false
     }
   }
 
@@ -37,28 +43,32 @@ class App extends Component {
               }
             })
         })
-        console.log(areaPromises);
         Promise.all(areaPromises)
           .then(completeAreaData => this.setState({areas: completeAreaData}))
       })
       .catch(err => console.error(err))
   }
 
-  checkFormStatus = (status) => {
-    if (status) {
-      return <Route path="/Areas" render={() => <AreaContainer areas={this.state.areas} />} />
-    } else {
-      return <p>Fill out the fucken form</p>
-    }
+  setUserInfo = ({name, email, purpose}) => {
+    this.setState({
+      userInfo: {
+        name,
+        email,
+        purpose
+      },
+      isLoggedIn: true
+    })
+    console.log('hi');
   }
-
-// <Route path="/Areas" render={() => <AreaContainer areas={this.state.areas} />} />
 
   render() {
     return (
       <div className="App">
-        {this.checkFormStatus}
-        <Login checkForm={this.checkFormStatus} />
+        {!this.state.isLoggedIn ?
+          <Redirect to="/" /> :
+          <Redirect to="/Areas" />}
+        <Route path="/Areas" render={() => <AreaContainer areas={this.state.areas} />} />
+        <Login setUserInfo={this.setUserInfo} />
       </div>
     );
   }
