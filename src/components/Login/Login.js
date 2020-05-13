@@ -16,23 +16,16 @@ class Login extends Component {
   trackInput = (e) => {
     const keyword = e.target.id
     this.setState({[keyword]: e.target.value})
-    this.enableLoginButton();
   }
 
   trackPurpose = (e) => {
     let purpose = e.target.options[e.target.selectedIndex].value
     this.setState({purpose: purpose})
-    this.enableLoginButton();
   }
 
-  enableLoginButton = () => {
-    const state = this.state;
-    debugger;
-    if (state.name && state.email && state.purpose) {
-      this.props.checkForm(true);
-    } else {
-      this.props.checkForm(false);
-    }
+  handleLogin = (e) => {
+    e.preventDefault();
+    this.props.setUserInfo(this.state);
   }
 
   // If any of the forms are empty / unselected, display an error message
@@ -47,21 +40,22 @@ class Login extends Component {
           <h1>VRAD</h1>
         <section className="login-container">
           <section className="login-input-field">
-          <h3 className="login-header">Sign In</h3>
-            <input onChange={this.trackInput} id="name" placeholder="Name" className="login-input name-input"/>
-            <input onChange={this.trackInput} id="email" placeholder="E-mail" className="login-input email-input"/>
-            <div className="btn-container">
-              <select onChange={this.trackPurpose} id="purpose" className="btn dropdown">
-                <option value="business">Business</option>
-                <option value="vacation">Vacation</option>
-                <option value="other">Other</option>
-              </select>
-              <button className="btn login-btn">
-                <Link to="Areas">
+            <form onSubmit={this.handleLogin}>
+              <h3 className="login-header">Sign In</h3>
+              <input required onChange={this.trackInput} id="name" placeholder="Name" className="login-input name-input"/>
+              <input required onChange={this.trackInput} id="email" placeholder="E-mail" className="login-input email-input"/>
+              <div className="btn-container">
+                <select required onChange={this.trackPurpose} id="purpose" className="btn dropdown">
+                  <option value="">Purpose</option>
+                  <option value="business">Business</option>
+                  <option value="vacation">Vacation</option>
+                  <option value="other">Other</option>
+                </select>
+                <button className="btn login-btn">
                   Login
-                </Link>
-              </button>
-            </div>
+                </button>
+              </div>
+            </form>
           </section>
         </section>
       </section>
