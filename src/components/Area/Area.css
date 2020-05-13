@@ -1,0 +1,36 @@
+.area-card {
+  width: 50%;
+  margin: 6%;
+  background-color: black;
+  padding: 5%;
+  opacity: 80%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid white;
+}
+
+.area-header {
+  text-align: center;
+  border-bottom: 1px solid white;
+  padding-bottom: 2%;
+}
+
+.see-listings-button {
+  padding: 2%;
+  margin-left: auto;
+  margin-top: auto;
+  font-size: .9em;
+  border-radius: 5px;
+  border: none;
+  width: 40%;
+}
+
+.see-listings-button:hover {
+  background-color: #767676;
+  color: white;
+}
+
+.area-about {
+  font-size: 1em;
+}
