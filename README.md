@@ -16,12 +16,15 @@ VRAD (Vacation Rentals Around Denver) was a paired project (two people) given to
 
 ## Installation 
 
-Clone down this repo into an empty directory on your local machine
-Run `npm install` in your teminal to install the project's dependencies 
-Run `npm start` to run the application in development mode
-Visit [http://localhost:3000](http://localhost:3000) to view it in the browser
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> Clone down this repo into an empty directory on your local machine
+>
+> Run `npm install` in your teminal to install the project's dependencies 
+>
+> Run `npm start` to run the application in development mode
+>
+> Visit [http://localhost:3000](http://localhost:3000) to view it in the browser
+>
+> This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Challenges
 
