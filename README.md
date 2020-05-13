@@ -29,3 +29,5 @@ VRAD (Vacation Rentals Around Denver) was a paired project (two people) given to
 ## Challenges
 
 ## Looking Ahead
+
+## VRAD In Action:
