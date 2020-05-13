@@ -10,6 +10,7 @@ const AreaContainer = ({areas}) => {
         area={area.area}
         details={area.details}
         id={area.id}
+        key={area.id}
         name={area.name}
         location={area.location}
         about={area.about}
