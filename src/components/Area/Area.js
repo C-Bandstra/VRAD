@@ -2,6 +2,7 @@ import  React from 'react';
 import './Area.css';
 
 const Area = (props) => {
+  console.log(props);
   return (
     <section className="area-card">
       <h3 className="area-header">{props.name} ({props.area})</h3>
