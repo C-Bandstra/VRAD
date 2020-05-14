@@ -13,6 +13,7 @@ class App extends Component {
     this.state = {
       current: 'login',
       areas: [],
+      listings: [],
       userInfo: {
         name: '',
         email: '',
@@ -68,7 +69,7 @@ class App extends Component {
           <Redirect to="/" /> :
           <Redirect to="/Areas" />}
         <Route path="/Areas" render={() => <AreaContainer areas={this.state.areas} />} />
-        <Login setUserInfo={this.setUserInfo} />
+        <Route exact path="/" render={() => <Login setUserInfo={this.setUserInfo} />} />
       </div>
     );
   }
