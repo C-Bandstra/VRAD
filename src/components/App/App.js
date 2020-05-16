@@ -2,6 +2,7 @@ import  React, {Component} from 'react';
 import './App.css';
 import Login from '../Login/Login'
 import AreaContainer from '../AreaContainer/AreaContainer'
+import ListingContainer from '../ListingContainer/ListingContainer';
 import {Route, Redirect} from "react-router-dom";
 
 
@@ -10,6 +11,7 @@ import {Route, Redirect} from "react-router-dom";
 class App extends Component {
   constructor() {
     super();
+    this.mounted = false;
     this.state = {
       current: 'login',
       areas: [],
@@ -19,11 +21,12 @@ class App extends Component {
         email: '',
         purpose: ''
       },
-      isLoggedIn: false
+      isLoggedIn: false,
     }
   }
 
   componentDidMount() {
+    this.mounted = true;
     fetch('https://vrad-api.herokuapp.com/api/v1/areas')
       .then(response => response.json())
       .then(areaData => {
@@ -50,6 +53,10 @@ class App extends Component {
       .catch(err => console.error(err))
   }
 
+  componentWillUnmount() {
+    this.mounted = false;
+  }
+
   setUserInfo = ({name, email, purpose}) => {
     this.setState({
       userInfo: {
@@ -59,7 +66,6 @@ class App extends Component {
       },
       isLoggedIn: true
     })
-    console.log('hi');
   }
 
   render() {
@@ -68,8 +74,18 @@ class App extends Component {
         {!this.state.isLoggedIn ?
           <Redirect to="/" /> :
           <Redirect to="/Areas" />}
+          <Route
+          path='/Areas/:id/Listings'
+          exact
+          render={({match}) => {
+            const { id } = match.params;
+            const areaToRender = this.state.areas.find(area => {
+              return area.id === parseInt(id)
+            });
+            return <ListingContainer {...areaToRender} />
+        }} />
         <Route path="/Areas" render={() => <AreaContainer areas={this.state.areas} />} />
-        <Route exact path="/" render={() => <Login setUserInfo={this.setUserInfo} />} />
+        <Route exact path='/' render={() => <Login setUserInfo={this.setUserInfo} />}/>
       </div>
     );
   }
