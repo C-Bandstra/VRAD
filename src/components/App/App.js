@@ -84,7 +84,7 @@ class App extends Component {
             });
             return <ListingContainer {...areaToRender} />
         }} />
-        <Route path="/Areas" render={() => <AreaContainer areas={this.state.areas} />} />
+        <Route exact path="/Areas" render={() => <AreaContainer areas={this.state.areas} />} />
         <Route exact path='/' render={() => <Login setUserInfo={this.setUserInfo} />}/>
       </div>
     );
