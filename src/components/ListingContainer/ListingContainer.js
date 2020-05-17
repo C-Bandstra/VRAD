@@ -49,8 +49,12 @@ class ListingContainer extends Component {
 
   render() {
     return (
-      <section className="listing-container">
-        {this.listingsToDisplay()}
+      <section className="listings-page">
+        {console.log('listings', this.state.listingData)}
+        <h2 className="listings-header">Listings for {this.props.name} ({this.props.area})</h2>
+        <section className="listing-container">
+          {this.listingsToDisplay()}
+        </section>
       </section>
     )
   }
