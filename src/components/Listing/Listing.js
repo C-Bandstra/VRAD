@@ -1,10 +1,27 @@
 import React from 'react';
 import './Listing.css';
 
-const Listing = ({name}) => {
+const Listing = (props) => {
+
+  const renderListingDetails = () => {
+    let detailsToRender = Object.keys(props.details).map(detail => {
+      return (`
+        Number of beds: ${props.details.beds}
+        Number of baths: ${props.details.baths}
+        Cost per night: ${props.details.cost_per_night}
+        `);
+    })
+    return detailsToRender;
+  }
+
+  console.log('hi', renderListingDetails());
+
   return (
     <section className="listing-card">
-      <p>{name}</p>
+      <h4>{props.name}</h4>
+      <section className="listing-details-container">
+        {renderListingDetails()}
+      </section>
     </section>
   )
 }
