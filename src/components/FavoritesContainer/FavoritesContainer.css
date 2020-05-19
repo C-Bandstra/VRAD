@@ -4,7 +4,7 @@
 }
 
 .favorites-container {
-  min-height: 90%;
+  height: 90%;
   width: 100%;
   background-image: url('https://images.unsplash.com/photo-1580408597610-51b1ad419857?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1649&q=80');
   background-position: center;
