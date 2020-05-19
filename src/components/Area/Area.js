@@ -15,4 +15,3 @@ const Area = (props) => {
 }
 
 export default Area;
-

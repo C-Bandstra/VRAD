@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './ListingContainer.css';
 import Listing from '../Listing/Listing';
+import NavBar from '../NavBar/NavBar';
 
 class ListingContainer extends Component {
   constructor(props) {
@@ -42,10 +43,14 @@ class ListingContainer extends Component {
   render() {
     return (
       <section className="listings-page">
-        <h2 className="listings-header">Listings for {this.props.name} ({this.props.area})</h2>
-          <section className="listing-container">
-            {this.listingsToDisplay()}
-          </section>
+        <NavBar
+          title={`Listings for ${this.props.name} (${this.props.area})`}
+          userInfo={this.props.userInfo}
+          signOut={this.props.signOut}
+        />
+        <section className="listings-parent-container">
+          {this.listingsToDisplay()}
+        </section>
       </section>
     )
   }

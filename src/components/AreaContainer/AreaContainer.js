@@ -1,8 +1,11 @@
 import  React from 'react';
 import './AreaContainer.css';
 import Area from '../Area/Area';
+import ListingContainer from '../ListingContainer/ListingContainer';
+import NavBar from '../NavBar/NavBar';
+import {Route, Redirect} from "react-router-dom";
 
-const AreaContainer = ({areas}) => {
+const AreaContainer = ({areas, userInfo, signOut}) => {
 
   const areasToDisplay = areas.map(area => {
     return (
@@ -15,8 +18,15 @@ const AreaContainer = ({areas}) => {
   })
 
   return (
-    <section className="areas-container">
-      {areasToDisplay}
+    <section className="areas-page">
+      <NavBar
+        title={`Neighborhoods in Denver for ${userInfo.purpose} Rentals`}
+        userInfo={userInfo}
+        signOut={signOut}
+      />
+      <section className="areas-container">
+        {areasToDisplay}
+      </section>
     </section>
   )
 }
