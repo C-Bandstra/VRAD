@@ -2,9 +2,10 @@ import  React from 'react';
 import './AreaContainer.css';
 import Area from '../Area/Area';
 import ListingContainer from '../ListingContainer/ListingContainer';
+import NavBar from '../NavBar/NavBar';
 import {Route, Redirect} from "react-router-dom";
 
-const AreaContainer = ({areas, displayListings, currentListings}) => {
+const AreaContainer = ({areas, displayListings, currentListings, userInfo}) => {
 
   const areasToDisplay = areas.map(area => {
     return (
@@ -26,25 +27,14 @@ const AreaContainer = ({areas, displayListings, currentListings}) => {
   })
 
   return (
-    <section className="areas-container">
-      {areasToDisplay}
-      {/*<Route
-        path='/Areas/:id/Listings'
-        render={({match}) => {
-            const {id} = match.params;
-            const areaToRender = areas.find(area => {
-              return area.id === parseInt(id)
-            });
-            console.log('area', areaToRender);
-            return <ListingContainer {...areaToRender} />
-          }
-        }
-      />*/}
-      {/*<Route
-        path='/Areas'
-        exact
-        render={() => <AreaContainer areas={areas} />}
-      />*/}
+    <section className="areas-page">
+      <NavBar
+        title={`Neighborhoods in Denver for ${userInfo.purpose} Rentals`}
+        userInfo={userInfo}
+      />
+      <section className="areas-container">
+        {areasToDisplay}
+      </section>
     </section>
   )
 }
