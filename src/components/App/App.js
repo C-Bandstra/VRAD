@@ -21,7 +21,7 @@ class App extends Component {
       isLoggedIn: false,
     }
   }
-  
+
   setUserInfo = (user) => {
     this.setState({
       userInfo: user,
@@ -65,6 +65,17 @@ class App extends Component {
         purpose: ''
       },
       isLoggedIn: false
+    })
+  }
+
+  updateFavorites = (newFavorite, userInfo) => {
+    this.setState({
+      userInfo: {
+        name: userInfo.name,
+        email: userInfo.email,
+        purpose: userInfo.purpose,
+        favorites: [...this.state.userInfo.favorites, newFavorite]
+      }
     })
   }
 

@@ -32,6 +32,13 @@ class ListingContainer extends Component {
       .then(completeListingData => this.setState({listingData: completeListingData}))
   }
 
+  findListing = (id) => {
+    const foundListing = this.state.listingData.find(listing => {
+      return listing.listing_id === parseInt(id)
+    })
+    this.props.updateFavorites(foundListing, this.props.userInfo)
+  }
+
   componentDidMount() {
     this.fetchListings()
   }
