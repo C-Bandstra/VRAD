@@ -68,6 +68,17 @@ class App extends Component {
     })
   }
 
+  signOut = () => {
+    this.setState({
+      userInfo: {
+        name: '',
+        email: '',
+        purpose: ''
+      },
+      isLoggedIn: false
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -82,7 +93,11 @@ class App extends Component {
             const areaToRender = this.state.areas.find(area => {
               return area.id === parseInt(id)
             });
-            return <ListingContainer {...areaToRender} />
+            return <ListingContainer
+              {...areaToRender}
+              userInfo={this.state.userInfo}
+              signOut={this.signOut}
+            />
         }} />
         <Route
           exact
@@ -90,6 +105,7 @@ class App extends Component {
           render={() => <AreaContainer
             areas={this.state.areas}
             userInfo={this.state.userInfo}
+            signOut={this.signOut}
            />}
         />
         <Route exact path='/' render={() => <Login setUserInfo={this.setUserInfo} />}/>
