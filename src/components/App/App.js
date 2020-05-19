@@ -3,6 +3,7 @@ import './App.css';
 import Login from '../Login/Login'
 import AreaContainer from '../AreaContainer/AreaContainer'
 import ListingContainer from '../ListingContainer/ListingContainer';
+import FavoritesContainer from '../FavoritesContainer/FavoritesContainer';
 import {Route, Redirect} from "react-router-dom";
 // import { render } from '@testing-library/react';
 class App extends Component {
@@ -16,12 +17,13 @@ class App extends Component {
       userInfo: {
         name: '',
         email: '',
-        purpose: ''
+        purpose: '',
+        favorites: []
       },
       isLoggedIn: false,
     }
   }
-  
+
   setUserInfo = (user) => {
     this.setState({
       userInfo: user,
@@ -62,7 +64,8 @@ class App extends Component {
       userInfo: {
         name: '',
         email: '',
-        purpose: ''
+        purpose: '',
+        favorites: []
       },
       isLoggedIn: false
     })
@@ -95,6 +98,14 @@ class App extends Component {
             userInfo={this.state.userInfo}
             signOut={this.signOut}
            />}
+        />
+        <Route
+          exact
+          path="/Favorites"
+          render={() => <FavoritesContainer
+            favorites={this.state.userInfo}
+            signOut={this.signOut}
+          />}
         />
         <Route exact path='/' render={() => <Login setUserInfo={this.setUserInfo} />}/>
       </div>
