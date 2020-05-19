@@ -25,48 +25,67 @@ class App extends Component {
       isLoggedIn: true,
     }
   }
+  
+  setUserInfo = (user) => {
+    this.setState({
+      userInfo: user,
+      isLoggedIn: true
+    })
+  }
+  
+  fetchAreas = async () => {
+    // this.mounted = true;
+    // fetch('https://vrad-api.herokuapp.com/api/v1/areas')
+    //   .then(response => response.json())
+    //   .then(areaData => {
+    //     const areaPromises = areaData.areas.map(area => {
+    //       return fetch(`https://vrad-api.herokuapp.com${area.details}`)
+    //         .then(response => response.json())
+    //         .then(info => {
+    //           return {
+    //             area: area.area,
+    //             details: area.details,
+    //             id: info.id,
+    //             name: info.name,
+    //             location: info.location,
+    //             about: info.about,
+    //             region_code: info.region_code,
+    //             quick_search: info.quick_search,
+    //             listings: info.listings
+    //           }
+    //         })
+    //     })
+    //     Promise.all(areaPromises)
+    //       .then(completeAreaData => this.setState({areas: completeAreaData}))
+    //   })
+    //   .catch(err => console.error(err))
+    this.mounted = true;
+    const response = await fetch('https://vrad-api.herokuapp.com/api/v1/areas')
+    const areaData = await response.json()
+
+    const areaPromises = areaData.areas.map(async areaData => {
+      return {
+        area: areaData.area,
+        details: await this.fetchDetails(areaData.details)
+      }
+    })
+    Promise.all(areaPromises)
+    .then(areaInfo => this.setState({areas: areaInfo}))
+  }
+
+  fetchDetails = async (details) => {
+    const response = await fetch(`https://vrad-api.herokuapp.com${details}`)
+    const data = await response.json();
+    console.log(data)
+    return await data
+  }
 
   componentDidMount() {
-    this.mounted = true;
-    fetch('https://vrad-api.herokuapp.com/api/v1/areas')
-      .then(response => response.json())
-      .then(areaData => {
-        const areaPromises = areaData.areas.map(area => {
-          return fetch(`https://vrad-api.herokuapp.com${area.details}`)
-            .then(response => response.json())
-            .then(info => {
-              return {
-                area: area.area,
-                details: area.details,
-                id: info.id,
-                name: info.name,
-                location: info.location,
-                about: info.about,
-                region_code: info.region_code,
-                quick_search: info.quick_search,
-                listings: info.listings
-              }
-            })
-        })
-        Promise.all(areaPromises)
-          .then(completeAreaData => this.setState({areas: completeAreaData}))
-      })
-      .catch(err => console.error(err))
+    this.fetchAreas()
   }
 
   componentWillUnmount() {
     this.mounted = false;
-  }
-
-  setUserInfo = ({name, email, purpose}) => {
-    this.setState({
-      userInfo: {
-        name,
-        email,
-        purpose
-      },
-      isLoggedIn: true
-    })
   }
 
   findArea = (id) => {
@@ -93,6 +112,8 @@ class App extends Component {
           render={({match}) => {
             const { id } = match.params;
             const areaToRender = this.findArea(id)
+
+            console.log(areaToRender)
             return <ListingContainer {...areaToRender} />
         }} />
 

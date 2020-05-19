@@ -5,22 +5,19 @@ import ListingContainer from '../ListingContainer/ListingContainer';
 import {Route, Redirect} from "react-router-dom";
 
 const AreaContainer = ({areas, displayListings, currentListings}) => {
-
   const areasToDisplay = areas.map(area => {
     return (
       <Area
         area={area.area}
         details={area.details}
-        id={area.id}
+        id={area.details.id}
         key={area.id}
-        name={area.name}
-        location={area.location}
-        about={area.about}
-        region_code={area.region_code}
-        quick_search={area.quick_search}
-        listings={area.listings}
-        displayListings={displayListings}
-        currentListings={currentListings}
+        name={area.details.name}
+        location={area.details.location}
+        about={area.details.about}
+        listings={area.details.listings}
+        // displayListings={displayListings}
+        // currentListings={currentListings}
       />
     )
   })

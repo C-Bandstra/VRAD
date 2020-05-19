@@ -22,7 +22,7 @@ class ListingContainer extends Component {
 
   componentDidMount() {
     this.mounted = true;
-    const listingPromises = this.props.listings.map(listing => {
+    const listingPromises = this.props.details.listings.map(listing => {
       return fetch(`https://vrad-api.herokuapp.com${listing}`)
         .then(response => response.json())
         .then(data => {
