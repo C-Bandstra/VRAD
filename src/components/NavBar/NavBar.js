@@ -10,7 +10,7 @@ const NavBar = (props) => {
       <section className="user-about-container">
         <p className="welcome-user">Welcome, {props.userInfo.name}!</p>
         <Link className="logout-link" to="/">
-          <button className="logout-button">Sign Out</button>
+          <button onClick={() => props.signOut()} className="logout-button">Sign Out</button>
         </Link>
       </section>
     </section>
