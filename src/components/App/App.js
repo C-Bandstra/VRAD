@@ -27,7 +27,7 @@ class App extends Component {
   setUserInfo = (user) => {
     this.setState({
       userInfo: user,
-      isLoggedIn: true
+      isLoggedIn: true,
     })
   }
 
@@ -96,6 +96,7 @@ class App extends Component {
               {...areaToRender}
               userInfo={this.state.userInfo}
               signOut={this.signOut}
+              updateFavorites={this.updateFavorites}
             />
         }} />
         <Route
