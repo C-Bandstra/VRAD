@@ -44,7 +44,7 @@ class ListingContainer extends Component {
     return (
       <section className="listings-page">
         <NavBar
-          title={`Listings for ${this.props.name} (${this.props.area})`}
+          title={`Listings for ${this.props.details.name} (${this.props.area})`}
           userInfo={this.props.userInfo}
           signOut={this.props.signOut}
         />
