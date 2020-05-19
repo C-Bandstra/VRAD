@@ -3,6 +3,7 @@ import './App.css';
 import Login from '../Login/Login'
 import AreaContainer from '../AreaContainer/AreaContainer'
 import ListingContainer from '../ListingContainer/ListingContainer';
+import ListingDetails from '../ListingDetails/ListingDetails.js';
 import {Route, Redirect} from "react-router-dom";
 
 
@@ -68,6 +69,18 @@ class App extends Component {
     })
   }
 
+  findArea = (id) => {
+    return this.state.areas.find(area => {
+      return area.id === parseInt(id)
+    });
+  }
+
+  findListing = async (url) => {
+    const response = await fetch(`https://vrad-api.herokuapp.com${url}`)
+    const listing = await response.json()
+    return listing
+  }
+
   render() {
     return (
       <div className="App">
@@ -79,10 +92,20 @@ class App extends Component {
           exact
           render={({match}) => {
             const { id } = match.params;
-            const areaToRender = this.state.areas.find(area => {
-              return area.id === parseInt(id)
-            });
+            const areaToRender = this.findArea(id)
             return <ListingContainer {...areaToRender} />
+        }} />
+
+        <Route
+        path='/Areas/:areaId/Listings/:listingId/ListingDetails'
+        exact
+        render={async ({match}) => {
+          const {areaId, listingId} = await match.params;
+          const area = await this.findArea(areaId)
+          const listingUrl = await area.listings.find(listing => listing.includes(listingId))
+          const listing = await this.findListing(listingUrl);
+          console.log(listing)
+          return <ListingDetails {...listing} />
         }} />
         <Route exact path="/Areas" render={() => <AreaContainer areas={this.state.areas} />} />
         <Route exact path='/' render={() => <Login setUserInfo={this.setUserInfo} />}/>

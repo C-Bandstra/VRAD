@@ -14,7 +14,7 @@ class ListingContainer extends Component {
   listingsToDisplay = () => {
     let listings = this.state.listingData.map(listing => {
       return (
-        <Listing {...listing} />
+        <Listing areaId={this.props.id} {...listing} />
       )
     })
     return listings;

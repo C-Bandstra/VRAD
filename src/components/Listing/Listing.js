@@ -1,17 +1,12 @@
 import React from 'react';
 import './Listing.css';
+import { Link } from "react-router-dom";
 
 const Listing = (props) => {
 
   const imagePath = `/images/${props.listing_id}_a.jpg`;
 
-  const renderListingDetails = () => {
-      return (`
-        Number of beds: ${props.details.beds}
-        Number of baths: ${props.details.baths}
-        Cost per night: ${props.details.cost_per_night}
-        `);
-    }
+
 
   return (
     <section className="listing-card">
@@ -22,7 +17,9 @@ const Listing = (props) => {
         <img src={imagePath} className="listing-img"/>
       </section>
       <section className="listing-button-container">
-        <button className="expand-listing-button">View Details</button>
+      <Link className="expand-listing-button" to={`/Areas/${props.areaId}/Listings/${props.listing_id}/ListingDetails`}>
+        View Details
+      </Link>
       </section>
     </section>
   )
