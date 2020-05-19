@@ -9,7 +9,7 @@ const NavBar = (props) => {
       <h2 className="page-header">{props.title}</h2>
       <section className="nav-button-container">
         <Link className="nav-link" to="/Favorites">
-          <button className="nav-button">My Favorites</button>
+          <button className="nav-button">My Favorites ({props.userInfo.favorites.length})</button>
         </Link>
         <Link className="nav-link" to="/">
           <button onClick={() => props.signOut()} className="nav-button">Sign Out</button>
