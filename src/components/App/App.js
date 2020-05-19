@@ -21,7 +21,7 @@ class App extends Component {
         email: '',
         purpose: ''
       },
-      isLoggedIn: true,
+      isLoggedIn: false,
     }
   }
 
