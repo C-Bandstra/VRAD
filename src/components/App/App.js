@@ -71,6 +71,14 @@ class App extends Component {
     })
   }
 
+  updateFavorites = (newFavorite) => {
+    this.setState({
+      userInfo: {
+        favorites: [...this.state.userInfo.favorites, newFavorite]
+      }
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -103,7 +111,7 @@ class App extends Component {
           exact
           path="/Favorites"
           render={() => <FavoritesContainer
-            favorites={this.state.userInfo}
+            userInfo={this.state.userInfo}
             signOut={this.signOut}
           />}
         />
