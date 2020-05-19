@@ -48,7 +48,7 @@ class ListingContainer extends Component {
           userInfo={this.props.userInfo}
           signOut={this.props.signOut}
         />
-        <section className="listings-parent-container">
+        <section className="listings-container">
           {this.listingsToDisplay()}
         </section>
       </section>
