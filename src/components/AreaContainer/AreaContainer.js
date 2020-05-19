@@ -31,4 +31,4 @@ const AreaContainer = ({areas, userInfo, signOut}) => {
   )
 }
 
-export default AreaContainer;
+export default AreaContainer; 
