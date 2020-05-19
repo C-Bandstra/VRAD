@@ -5,14 +5,6 @@ const Listing = (props) => {
 
   const imagePath = `/images/${props.listing_id}_a.jpg`;
 
-  const renderListingDetails = () => {
-      return (`
-        Number of beds: ${props.details.beds}
-        Number of baths: ${props.details.baths}
-        Cost per night: ${props.details.cost_per_night}
-        `);
-    }
-
   return (
     <section className="listing-card">
       <section className="listing-header-container">
