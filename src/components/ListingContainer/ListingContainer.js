@@ -15,7 +15,7 @@ class ListingContainer extends Component {
   listingsToDisplay = () => {
     let listings = this.state.listingData.map(listing => {
       return (
-        <Listing key={listing.listing_id} {...listing} />
+        <Listing key={listing.listing_id} {...listing} findListing={this.findListing} />
       )
     })
     return listings;
@@ -30,6 +30,13 @@ class ListingContainer extends Component {
     })
     Promise.all(listingPromises)
       .then(completeListingData => this.setState({listingData: completeListingData}))
+  }
+
+  findListing = (id) => {
+    const foundListing = this.state.listingData.find(listing => {
+      return listing.listing_id === parseInt(id)
+    })
+    this.props.updateFavorites(foundListing)
   }
 
   componentDidMount() {
