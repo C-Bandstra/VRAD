@@ -28,12 +28,6 @@ class Login extends Component {
     this.props.setUserInfo(this.state);
   }
 
-  // If any of the forms are empty / unselected, display an error message
-  // telling the user to complete the form.
-  // Else, display the areas page.
-
-  //on button click, change page while passing in this.state values
-
   render() {
     return (
       <section className="login-page">

@@ -17,11 +17,11 @@ const AreaContainer = ({areas, displayListings, currentListings, userInfo, signO
         name={area.name}
         location={area.location}
         about={area.about}
-        region_code={area.region_code}
-        quick_search={area.quick_search}
+        // region_code={area.region_code}
+        // quick_search={area.quick_search}
         listings={area.listings}
-        displayListings={displayListings}
-        currentListings={currentListings}
+        // displayListings={displayListings}
+        // currentListings={currentListings}
       />
     )
   })
