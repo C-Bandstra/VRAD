@@ -14,33 +14,25 @@ class ListingContainer extends Component {
   listingsToDisplay = () => {
     let listings = this.state.listingData.map(listing => {
       return (
-        <Listing {...listing} />
+        <Listing key={listing.listing_id} {...listing} />
       )
     })
     return listings;
   }
 
-  componentDidMount() {
+  fetchListings = async () => {
     this.mounted = true;
-    const listingPromises = this.props.listings.map(listing => {
-      return fetch(`https://vrad-api.herokuapp.com${listing}`)
-        .then(response => response.json())
-        .then(data => {
-          return {
-            listing_id: data.listing_id,
-            area_id: data.area_id,
-            name: data.name,
-            key: data.listing_id,
-            address: data.address,
-            details: data.details,
-            dev_id: data.dev_id,
-            area: data.area,
-            db_connect: data.db_connect
-          }
-        })
+    const listingPromises = await this.props.details.listings.map(async listing => {
+      const response = await fetch(`https://vrad-api.herokuapp.com${listing}`)
+      const listingData = await response.json()
+      return await listingData
     })
     Promise.all(listingPromises)
       .then(completeListingData => this.setState({listingData: completeListingData}))
+  }
+
+  componentDidMount() {
+    this.fetchListings()
   }
 
   componentWillUnmount() {
