@@ -1,12 +1,10 @@
 .area-card {
   width: 50%;
-  margin: 4%;
+  margin: 5%;
   background-color: black;
   padding: 5%;
   opacity: 80%;
   color: white;
-  display: flex;
-  flex-direction: column;
   border: 2px solid white;
 }
 
@@ -16,14 +14,25 @@
   padding-bottom: 2%;
 }
 
+.area-header-container {
+  min-height: 10%;
+  width: 100%;
+  display: block;
+}
+
 .see-listings-button {
   padding: 2%;
-  margin-left: auto;
-  margin-top: auto;
   font-size: .9em;
   border-radius: 5px;
   border: none;
   width: 40%;
+  float: right;
+}
+
+.area-button-container {
+  min-height: 15%;
+  width: 100%;
+  display: block;
 }
 
 .see-listings-button:hover {
@@ -34,4 +43,9 @@
 .area-about {
   font-size: 1em;
 }
- 
+
+.area-about-container {
+  min-height: 50%;
+  width: 100%;
+  display: block;
+}
