@@ -15,7 +15,7 @@ class ListingContainer extends Component {
   listingsToDisplay = () => {
     let listings = this.state.listingData.map(listing => {
       return (
-        <Listing key={listing.listing_id} {...listing} />
+        <Listing key={listing.listing_id} {...listing} findListing={this.findListing} />
       )
     })
     return listings;
@@ -32,6 +32,13 @@ class ListingContainer extends Component {
       .then(completeListingData => this.setState({listingData: completeListingData}))
   }
 
+  findListing = (id) => {
+    const foundListing = this.state.listingData.find(listing => {
+      return listing.listing_id === parseInt(id)
+    })
+    this.props.updateFavorites(foundListing)
+  }
+
   componentDidMount() {
     this.fetchListings()
   }
@@ -44,11 +51,11 @@ class ListingContainer extends Component {
     return (
       <section className="listings-page">
         <NavBar
-          title={`Listings for ${this.props.name} (${this.props.area})`}
+          title={`${this.props.userInfo.purpose} Listings for ${this.props.details.name} (${this.props.area})`}
           userInfo={this.props.userInfo}
           signOut={this.props.signOut}
         />
-        <section className="listings-parent-container">
+        <section className="listings-container">
           {this.listingsToDisplay()}
         </section>
       </section>

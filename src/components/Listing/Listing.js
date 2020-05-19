@@ -2,7 +2,7 @@ import React from 'react';
 import './Listing.css';
 
 const Listing = (props) => {
-
+  console.log('hi', props);
   const imagePath = `/images/${props.listing_id}_a.jpg`;
 
   return (
@@ -14,7 +14,8 @@ const Listing = (props) => {
         <img src={imagePath} className="listing-img"/>
       </section>
       <section className="listing-button-container">
-        <button className="expand-listing-button">View Details</button>
+        <button onClick={() => props.findListing(props.listing_id)}className="listing-button">Favorite This Listing</button>
+        <button className="listing-button">View Details</button>
       </section>
     </section>
   )
