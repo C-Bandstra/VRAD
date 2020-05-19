@@ -37,7 +37,7 @@ class Login extends Component {
   render() {
     return (
       <section className="login-page">
-          <h1>VRAD</h1>
+          <h1>Vacation Rentals Around Denver</h1>
         <section className="login-container">
           <section className="login-input-field">
             <form onSubmit={this.handleLogin}>
