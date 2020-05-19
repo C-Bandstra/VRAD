@@ -47,9 +47,9 @@ class Login extends Component {
               <div className="btn-container">
                 <select required onChange={this.trackPurpose} id="purpose" className="btn dropdown">
                   <option value="">Purpose</option>
-                  <option value="business">Business</option>
-                  <option value="vacation">Vacation</option>
-                  <option value="other">Other</option>
+                  <option value="Business">Business</option>
+                  <option value="Vacation">Vacation</option>
+                  <option value="Other">Other</option>
                 </select>
                 <button className="btn login-btn">
                   Login
