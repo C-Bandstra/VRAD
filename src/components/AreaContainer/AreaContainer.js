@@ -5,7 +5,7 @@ import ListingContainer from '../ListingContainer/ListingContainer';
 import NavBar from '../NavBar/NavBar';
 import {Route, Redirect} from "react-router-dom";
 
-const AreaContainer = ({areas, displayListings, currentListings, userInfo}) => {
+const AreaContainer = ({areas, displayListings, currentListings, userInfo, signOut}) => {
 
   const areasToDisplay = areas.map(area => {
     return (
@@ -31,6 +31,7 @@ const AreaContainer = ({areas, displayListings, currentListings, userInfo}) => {
       <NavBar
         title={`Neighborhoods in Denver for ${userInfo.purpose} Rentals`}
         userInfo={userInfo}
+        signOut={signOut}
       />
       <section className="areas-container">
         {areasToDisplay}
