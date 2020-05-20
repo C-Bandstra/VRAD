@@ -1,8 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Listing from './Listing'
-import { render } from "@testing-library/react"
+import NavBar from '../NavBar/NavBar'
+import { render, fireEvent} from "@testing-library/react"
 import "@testing-library/jest-dom/extend-expect"
+import { MemoryRouter } from 'react-router-dom'
 
 
 describe('Listing', () => {
@@ -19,11 +21,34 @@ describe('Listing', () => {
     key: 3,
     listing_id: 3,
     name: "Hip RiNo Party Spot"
-}
+  }
+
+  const userInfo = {
+    name: 'Charlie',
+    email: 'blah',
+    purpose: "business",
+    favorites: []
+  }
 
   it('should render without crashing', () => {
-    const {getByText} = render(<Listing {...listing} />)
+    const {getByText} = render(<MemoryRouter><Listing {...listing} /></MemoryRouter>)
     const header = getByText("Hip RiNo Party Spot")
     expect(header).toBeInTheDocument()
+  })
+
+  it('favorite listing button should be clickable', () => {
+    const mockFindListing = jest.fn()
+    const {getByText} = render(<MemoryRouter><Listing findListing={mockFindListing} {...listing} /></MemoryRouter>)
+    const favBtn = getByText("Favorite This Listing")
+    fireEvent.click(favBtn);
+    expect(mockFindListing).toHaveBeenCalledWith(3);
+  })
+
+  it('View details button should be clickable', () => {
+    const mockSetListing = jest.fn()
+    const {getByText} = render(<MemoryRouter><Listing setCurrentListing={mockSetListing} {...listing} /></MemoryRouter>)
+    const detailsBtn = getByText("View Details")
+    fireEvent.click(detailsBtn);
+    expect(mockSetListing).toHaveBeenCalled();
   })
 })
