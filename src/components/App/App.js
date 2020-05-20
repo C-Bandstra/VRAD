@@ -3,9 +3,10 @@ import './App.css';
 import Login from '../Login/Login'
 import AreaContainer from '../AreaContainer/AreaContainer'
 import ListingContainer from '../ListingContainer/ListingContainer';
+import ListingDetails from '../ListingDetails/ListingDetails.js';
 import FavoritesContainer from '../FavoritesContainer/FavoritesContainer';
 import {Route, Redirect} from "react-router-dom";
-// import { render } from '@testing-library/react';
+
 class App extends Component {
   constructor() {
     super();
@@ -13,7 +14,7 @@ class App extends Component {
     this.state = {
       current: 'login',
       areas: [],
-      listings: [],
+      currentListing: {},
       userInfo: {
         name: '',
         email: '',
@@ -71,6 +72,16 @@ class App extends Component {
     })
   }
 
+  findArea = (id) => {
+    return this.state.areas.find(area => {
+      return area.details.id === parseInt(id)
+    });
+  }
+
+  setCurrentListing = (listing) => {
+   this.setState({currentListing: listing})
+  }
+  
   updateFavorites = (newFavorite, userInfo) => {
     this.setState({
       userInfo: {
@@ -92,16 +103,20 @@ class App extends Component {
           path='/Areas/:id/Listings'
           exact render={({match}) => {
             const { id } = match.params;
-            const areaToRender = this.state.areas.find(area => {
-              return area.details.id === parseInt(id)
-            });
+            const areaToRender = this.findArea(id)
             return <ListingContainer
               {...areaToRender}
               userInfo={this.state.userInfo}
               signOut={this.signOut}
+              setCurrentListing={this.setCurrentListing}
               updateFavorites={this.updateFavorites}
             />
         }} />
+        <Route
+          path='/Areas/:areaId/Listings/:listingId/ListingDetails' 
+          exact render={() => {
+            return  <ListingDetails userInfo={this.state.userInfo} signOut={this.signOut} {...this.state.currentListing}/>
+          }} />
         <Route
           exact
           path="/Areas"
@@ -117,6 +132,7 @@ class App extends Component {
           render={() => <FavoritesContainer
             userInfo={this.state.userInfo}
             signOut={this.signOut}
+            setCurrentListing={this.setCurrentListing}
           />}
         />
         <Route exact path='/' render={() => <Login setUserInfo={this.setUserInfo} />}/>

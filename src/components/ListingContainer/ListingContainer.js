@@ -15,7 +15,7 @@ class ListingContainer extends Component {
   listingsToDisplay = () => {
     let listings = this.state.listingData.map(listing => {
       return (
-        <Listing key={listing.listing_id} {...listing} findListing={this.findListing} />
+        <Listing setCurrentListing={this.props.setCurrentListing} key={listing.listing_id} {...listing} findListing={this.findListing} />
       )
     })
     return listings;

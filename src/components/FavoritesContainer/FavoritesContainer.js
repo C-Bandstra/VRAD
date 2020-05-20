@@ -3,12 +3,12 @@ import './FavoritesContainer.css';
 import NavBar from '../NavBar/NavBar';
 import Listing from '../Listing/Listing';
 
-const FavoritesContainer = ({userInfo, signOut}) => {
+const FavoritesContainer = ({ setCurrentListing, userInfo, signOut}) => {
 
   const favoritesToDisplay = () => {
     let favorites = userInfo.favorites.map(favorite => {
       return (
-        <Listing key={favorite.listing_id} {...favorite} />
+        <Listing setCurrentListing={setCurrentListing} key={favorite.listing_id} {...favorite} />
       )
     })
     console.log('ur mothers butt', favorites);
