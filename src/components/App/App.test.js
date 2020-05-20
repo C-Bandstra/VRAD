@@ -1,10 +1,17 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import App from './App';
-// import '@testing-library/jest-dom/extend-expect';
+// import React from 'react';
+// import { render } from '@testing-library/react';
+// import App from './App';
+// // import '@testing-library/jest-dom/extend-expect';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+// it('Should be able favorite a listing', () => {
+//   const mockFindListing = jest.fn()
+
+//   const {getByText} = render(<MemoryRouter><NavBar /><Listing findListing={mockFindListing} {...listing} /></MemoryRouter>)
+
+//   const favBtn = getByText("Favorite This Listing")
+//   const myFavsBtn = getByText("My Favorites")
+//   console.log(myFavsBtn)
+//   fireEvent.click(favBtn);
+
+
+// })
