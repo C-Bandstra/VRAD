@@ -20,9 +20,11 @@ const Listing = (props) => {
         <img src={imagePath} className="listing-img"/>
       </section>
       <section className="listing-button-container">
+      <button onClick={() => props.findListing(props.listing_id)} className="listing-button">Favorite This Listing</button>
       <Link onClick={sendCurrentListing} className="expand-listing-button" to={`${url}/${props.listing_id}/ListingDetails`}>
         View Details
       </Link>
+      
       </section>
     </section>
   )

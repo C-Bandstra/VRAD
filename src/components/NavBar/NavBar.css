@@ -1,51 +1,39 @@
 .navbar-container {
-  max-height: 10%;
+  height: 10%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   background-color: white;
   color: black;
+  align-content: space-between;
 }
 
 .vrad-header {
-  width: 15%;
+  width: 20%;
   color: black;
-  margin: auto 0 auto 1%;
-  font-size: 1.8em;
-  position: absolute;
+  font-size: 1em;
+  margin-left: 1%;
 }
 
 .page-header {
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
   border-bottom: 2px solid black;
+  width: 60%;
+  text-align: center;
 }
 
-.user-about-container {
+.nav-button-container {
   display: flex;
   flex-direction: column;
-  width: 15%;
-  max-height: 10%;
-  position: absolute;
-  margin-left: 85%;
-  justify-content: space-around;
-  align-content: space-around;
+  width: 20%;
   align-items: center;
-}
-
-.welcome-user {
-  margin-left: auto;
-  margin-right: 4%;
-  font-size: .9em;
-  align-self: center;
 }
 
 .v {
   font-size: 2em;
 }
 
-.logout-button {
-  padding: 3%;
+.nav-button {
+  padding: 4%;
   font-size: .8em;
   border-radius: 5px;
   border: none;
@@ -53,14 +41,15 @@
   background-color: black;
   color: white;
   align-self: center;
+  margin: 2%;
 }
 
-.logout-button:hover {
+.nav-button:hover {
   background-color: #767676;
   color: white;
 }
 
-.logout-link {
+.nav-link {
   width: 50%;
   margin-left: auto;
   margin-right: 4%;

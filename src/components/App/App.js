@@ -4,6 +4,7 @@ import Login from '../Login/Login'
 import AreaContainer from '../AreaContainer/AreaContainer'
 import ListingContainer from '../ListingContainer/ListingContainer';
 import ListingDetails from '../ListingDetails/ListingDetails.js';
+import FavoritesContainer from '../FavoritesContainer/FavoritesContainer';
 import {Route, Redirect} from "react-router-dom";
 
 class App extends Component {
@@ -17,16 +18,17 @@ class App extends Component {
       userInfo: {
         name: '',
         email: '',
-        purpose: ''
+        purpose: '',
+        favorites: []
       },
       isLoggedIn: false,
     }
   }
-  
+
   setUserInfo = (user) => {
     this.setState({
       userInfo: user,
-      isLoggedIn: true
+      isLoggedIn: true,
     })
   }
 
@@ -60,7 +62,12 @@ class App extends Component {
 
   signOut = () => {
     this.setState({
-      userInfo: {},
+      userInfo: {
+        name: '',
+        email: '',
+        purpose: '',
+        favorites: []
+      },
       isLoggedIn: false
     })
   }
@@ -73,6 +80,17 @@ class App extends Component {
 
   setCurrentListing = (listing) => {
    this.setState({currentListing: listing})
+  }
+  
+  updateFavorites = (newFavorite, userInfo) => {
+    this.setState({
+      userInfo: {
+        name: userInfo.name,
+        email: userInfo.email,
+        purpose: userInfo.purpose,
+        favorites: [...this.state.userInfo.favorites, newFavorite]
+      }
+    })
   }
 
   render() {
@@ -91,6 +109,7 @@ class App extends Component {
               userInfo={this.state.userInfo}
               signOut={this.signOut}
               setCurrentListing={this.setCurrentListing}
+              updateFavorites={this.updateFavorites}
             />
         }} />
         <Route
@@ -106,6 +125,15 @@ class App extends Component {
             userInfo={this.state.userInfo}
             signOut={this.signOut}
            />}
+        />
+        <Route
+          exact
+          path="/Favorites"
+          render={() => <FavoritesContainer
+            userInfo={this.state.userInfo}
+            signOut={this.signOut}
+            setCurrentListing={this.setCurrentListing}
+          />}
         />
         <Route exact path='/' render={() => <Login setUserInfo={this.setUserInfo} />}/>
       </div>
