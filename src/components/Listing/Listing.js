@@ -1,12 +1,15 @@
 import React from 'react';
 import './Listing.css';
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 const Listing = (props) => {
-
   const imagePath = `/images/${props.listing_id}_a.jpg`;
 
+  const url = window.location.pathname;
 
+  const sendCurrentListing = () => {
+    props.setCurrentListing(props)
+  }
 
   return (
     <section className="listing-card">
@@ -17,7 +20,7 @@ const Listing = (props) => {
         <img src={imagePath} className="listing-img"/>
       </section>
       <section className="listing-button-container">
-      <Link className="expand-listing-button" to={`/Areas/${props.areaId}/Listings/${props.listing_id}/ListingDetails`}>
+      <Link onClick={sendCurrentListing} className="expand-listing-button" to={`${url}/${props.listing_id}/ListingDetails`}>
         View Details
       </Link>
       </section>

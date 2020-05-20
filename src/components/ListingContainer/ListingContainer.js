@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './ListingContainer.css';
 import Listing from '../Listing/Listing';
+import NavBar from '../NavBar/NavBar';
 
 class ListingContainer extends Component {
   constructor(props) {
@@ -14,33 +15,25 @@ class ListingContainer extends Component {
   listingsToDisplay = () => {
     let listings = this.state.listingData.map(listing => {
       return (
-        <Listing areaId={this.props.id} {...listing} />
+        <Listing setCurrentListing={this.props.setCurrentListing} key={listing.listing_id} {...listing} />
       )
     })
     return listings;
   }
 
-  componentDidMount() {
+  fetchListings = async () => {
     this.mounted = true;
-    const listingPromises = this.props.details.listings.map(listing => {
-      return fetch(`https://vrad-api.herokuapp.com${listing}`)
-        .then(response => response.json())
-        .then(data => {
-          return {
-            listing_id: data.listing_id,
-            area_id: data.area_id,
-            name: data.name,
-            key: data.listing_id,
-            address: data.address,
-            details: data.details,
-            dev_id: data.dev_id,
-            area: data.area,
-            db_connect: data.db_connect
-          }
-        })
+    const listingPromises = await this.props.details.listings.map(async listing => {
+      const response = await fetch(`https://vrad-api.herokuapp.com${listing}`)
+      const listingData = await response.json()
+      return await listingData
     })
     Promise.all(listingPromises)
       .then(completeListingData => this.setState({listingData: completeListingData}))
+  }
+
+  componentDidMount() {
+    this.fetchListings()
   }
 
   componentWillUnmount() {
@@ -50,8 +43,12 @@ class ListingContainer extends Component {
   render() {
     return (
       <section className="listings-page">
-        <h2 className="listings-header">Listings for {this.props.name} ({this.props.area})</h2>
-        <section className="listing-container">
+        <NavBar
+          title={`Listings for ${this.props.details.name} (${this.props.area})`}
+          userInfo={this.props.userInfo}
+          signOut={this.props.signOut}
+        />
+        <section className="listings-parent-container">
           {this.listingsToDisplay()}
         </section>
       </section>
