@@ -34,4 +34,8 @@ One of the major challenges we faced during the build-out of this project was ha
 
 If we were to continue with this project, there are quite a few things we would like to add on or do differently. One process that may help throughout the build-out of a given project would be to build out some testing as components are being built, and modify as needed. For this project, we primarily built out the entire project and all of its components, and then headed into testing. Looking forward, it would likely be smart to finish up a particular feature of a component, and write out what you can to test that component. Another thing we'd likely focus on is a bit more in-depth planning in regards to each component's structure - it would likely be very helpful before building out the components to have some discussion about which components should be stateful, and which should be functional. 
 
-## VRAD In Action:
+## VRAD In Action
+
+## Contributors:
+[Charlie Bandstra](https://github.com/C-Bandstra)
+[Collin Kallery](http://github.com/collinkallery)
