@@ -4,6 +4,7 @@ import Login from '../Login/Login'
 import AreaContainer from '../AreaContainer/AreaContainer'
 import ListingContainer from '../ListingContainer/ListingContainer';
 import {Route, Redirect} from "react-router-dom";
+import ListingDetails from '../ListingDetails/ListingDetails';
 // import { render } from '@testing-library/react';
 class App extends Component {
   constructor() {
@@ -12,7 +13,7 @@ class App extends Component {
     this.state = {
       current: 'login',
       areas: [],
-      listings: [],
+      currentListing: {},
       userInfo: {
         name: '',
         email: '',
@@ -59,13 +60,19 @@ class App extends Component {
 
   signOut = () => {
     this.setState({
-      userInfo: {
-        name: '',
-        email: '',
-        purpose: ''
-      },
+      userInfo: {},
       isLoggedIn: false
     })
+  }
+
+  findArea = (id) => {
+    return this.state.areas.find(area => {
+      return area.details.id === parseInt(id)
+    });
+  }
+
+  setCurrentListing = (listing) => {
+   this.setState({currentListing: listing})
   }
 
   render() {
@@ -78,15 +85,19 @@ class App extends Component {
           path='/Areas/:id/Listings'
           exact render={({match}) => {
             const { id } = match.params;
-            const areaToRender = this.state.areas.find(area => {
-              return area.details.id === parseInt(id)
-            });
+            const areaToRender = this.findArea(id)
             return <ListingContainer
               {...areaToRender}
               userInfo={this.state.userInfo}
               signOut={this.signOut}
+              setCurrentListing={this.setCurrentListing}
             />
         }} />
+        <Route
+          path='/Areas/:areaId/Listings/:listingId/ListingDetails' 
+          exact render={() => {
+            return  <ListingDetails userInfo={this.state.userInfo} signOut={this.signOut} {...this.state.currentListing}/>
+          }} />
         <Route
           exact
           path="/Areas"
