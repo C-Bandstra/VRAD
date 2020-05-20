@@ -38,5 +38,4 @@ If we were to continue with this project, there are quite a few things we would 
 
 ## Contributors:
 [Charlie Bandstra](https://github.com/C-Bandstra)  
-
 [Collin Kallery](http://github.com/collinkallery)
