@@ -1,23 +1,30 @@
 import React from 'react';
 import './Listing.css';
+import {Link} from "react-router-dom";
 
 const Listing = (props) => {
+  const imagePath = `/images/${props.listing_id}_a.jpg`;
 
-  const renderListingDetails = () => {
-      return (`
-        Number of beds: ${props.details.beds}
-        Number of baths: ${props.details.baths}
-        Cost per night: ${props.details.cost_per_night}
-        `);
+  const url = window.location.pathname;
+
+  const sendCurrentListing = () => {
+    props.setCurrentListing(props)
   }
-
-  console.log('hi', renderListingDetails());
 
   return (
     <section className="listing-card">
-      <h4>{props.name}</h4>
-      <section className="listing-details-container">
-        {renderListingDetails()}
+      <section className="listing-header-container">
+        <h4 className="listing-header">{props.name}</h4>
+      </section>
+      <section className="listing-img-container">
+        <img src={imagePath} className="listing-img"/>
+      </section>
+      <section className="listing-button-container">
+      <button onClick={() => props.findListing(props.listing_id)} className="listing-button">Favorite This Listing</button>
+      <Link onClick={sendCurrentListing} className="expand-listing-button" to={`${url}/${props.listing_id}/ListingDetails`}>
+        View Details
+      </Link>
+      
       </section>
     </section>
   )

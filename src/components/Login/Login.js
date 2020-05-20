@@ -10,6 +10,7 @@ class Login extends Component {
       name: '',
       email: '',
       purpose: '',
+      favorites: []
     }
   }
 
@@ -28,16 +29,10 @@ class Login extends Component {
     this.props.setUserInfo(this.state);
   }
 
-  // If any of the forms are empty / unselected, display an error message
-  // telling the user to complete the form.
-  // Else, display the areas page.
-
-  //on button click, change page while passing in this.state values
-
   render() {
     return (
       <section className="login-page">
-          <h1>VRAD</h1>
+          <h1>Vacation Rentals Around Denver</h1>
         <section className="login-container">
           <section className="login-input-field">
             <form onSubmit={this.handleLogin}>
@@ -47,9 +42,9 @@ class Login extends Component {
               <div className="btn-container">
                 <select required onChange={this.trackPurpose} id="purpose" className="btn dropdown">
                   <option value="">Purpose</option>
-                  <option value="business">Business</option>
-                  <option value="vacation">Vacation</option>
-                  <option value="other">Other</option>
+                  <option value="Business">Business</option>
+                  <option value="Vacation">Vacation</option>
+                  <option value="Other">Other</option>
                 </select>
                 <button className="btn login-btn">
                   Login

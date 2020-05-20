@@ -2,51 +2,33 @@ import  React from 'react';
 import './AreaContainer.css';
 import Area from '../Area/Area';
 import ListingContainer from '../ListingContainer/ListingContainer';
+import NavBar from '../NavBar/NavBar';
 import {Route, Redirect} from "react-router-dom";
 
-const AreaContainer = ({areas, displayListings, currentListings}) => {
+const AreaContainer = ({areas, userInfo, signOut}) => {
 
   const areasToDisplay = areas.map(area => {
     return (
       <Area
         area={area.area}
         details={area.details}
-        id={area.id}
-        key={area.id}
-        name={area.name}
-        location={area.location}
-        about={area.about}
-        region_code={area.region_code}
-        quick_search={area.quick_search}
-        listings={area.listings}
-        displayListings={displayListings}
-        currentListings={currentListings}
+        key={area.details.id}
       />
     )
   })
 
   return (
-    <section className="areas-container">
-      {areasToDisplay}
-      {/*<Route
-        path='/Areas/:id/Listings'
-        render={({match}) => {
-            const {id} = match.params;
-            const areaToRender = areas.find(area => {
-              return area.id === parseInt(id)
-            });
-            console.log('area', areaToRender);
-            return <ListingContainer {...areaToRender} />
-          }
-        }
-      />*/}
-      {/*<Route
-        path='/Areas'
-        exact
-        render={() => <AreaContainer areas={areas} />}
-      />*/}
+    <section className="areas-page">
+      <NavBar
+        title={`Neighborhoods in Denver for ${userInfo.purpose} Rentals`}
+        userInfo={userInfo}
+        signOut={signOut}
+      />
+      <section className="areas-container">
+        {areasToDisplay}
+      </section>
     </section>
   )
 }
 
-export default AreaContainer;
+export default AreaContainer; 
