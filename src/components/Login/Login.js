@@ -10,6 +10,7 @@ class Login extends Component {
       name: '',
       email: '',
       purpose: '',
+      favorites: []
     }
   }
 
