@@ -5,8 +5,7 @@ import AreaContainer from '../AreaContainer/AreaContainer'
 import ListingContainer from '../ListingContainer/ListingContainer';
 import ListingDetails from '../ListingDetails/ListingDetails.js';
 import {Route, Redirect} from "react-router-dom";
-import ListingDetails from '../ListingDetails/ListingDetails';
-// import { render } from '@testing-library/react';
+
 class App extends Component {
   constructor() {
     super();
