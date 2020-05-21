@@ -36,6 +36,13 @@ If we were to continue with this project, there are quite a few things we would 
 
 ## VRAD In Action
 
+![VRAD1](https://i.imgur.com/tOjZIgd.png)
+![VRAD2](https://i.imgur.com/0z3apGm.png)
+![VRAD3](https://i.imgur.com/Bp5c8G5.png)
+![VRAD4](https://i.imgur.com/ls8csxI.png)
+![VRAD5](https://i.imgur.com/sPRyPP1.png)
+![VRAD6](https://i.imgur.com/y8PW3bf.png)
+
 ## Contributors:
 [Charlie Bandstra](https://github.com/C-Bandstra)  
 [Collin Kallery](http://github.com/collinkallery)
