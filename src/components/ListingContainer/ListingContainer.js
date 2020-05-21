@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import './ListingContainer.css';
 import Listing from '../Listing/Listing';
 import NavBar from '../NavBar/NavBar';
+import { listingPromises } from '../../apiCalls'
+
 
 class ListingContainer extends Component {
   constructor(props) {
@@ -23,13 +25,10 @@ class ListingContainer extends Component {
 
   fetchListings = async () => {
     this.mounted = true;
-    const listingPromises = await this.props.details.listings.map(async listing => {
-      const response = await fetch(`https://vrad-api.herokuapp.com${listing}`)
-      const listingData = await response.json()
-      return await listingData
-    })
-    Promise.all(listingPromises)
-      .then(completeListingData => this.setState({listingData: completeListingData}))
+    const completeListingData = await listingPromises(this.props)
+    Promise.all(completeListingData)
+      .then(completeListingData => this.setState({listingData: completeListingData})
+    )
   }
 
   findListing = (id) => {
