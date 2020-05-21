@@ -10,7 +10,7 @@ const ListingDetails = (props) => {
     )
   })
   return (
-    <section className="listing-details-page">
+    <section data-testid='details-page' className="listing-details-page">
       <NavBar
             title={`Details for ${props.name} (${props.area})`}
             userInfo={props.userInfo}
